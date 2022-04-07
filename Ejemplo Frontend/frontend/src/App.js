@@ -6,7 +6,14 @@ import {Login} from './Login/Login'
 import {VerUsuario} from './Datos/VersUsuarios'
 import {Crear} from './Crear/Crear'
 import {CrearPublicacion} from './CrearPublicacion/CrearPublicacion'
+import {PerfilIngresado} from './PerfilIngresado/PerfilIngresado'
+import {FiltroCatedratico} from './FiltroCatedratico/FiltroCatedratico'
+import {FiltroCurso} from './FiltroCurso/FiltroCurso'
+import {Recuperar} from './Recuperar/Recuperar'
+import {NuevoPassword} from './NuevoPassword/NuevoPassword'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -35,6 +42,27 @@ function App() {
       <Routes>
         <Route path='/CrearPublicacion' element={<CrearPublicacion/>}/>
       </Routes>
+
+      <Routes>
+        <Route path='/PerfilIngresado' element={<PerfilIngresado/>}/>
+      </Routes>
+
+      <Routes>
+        <Route path='/FiltroCatedratico' element={<FiltroCatedratico/>}/>
+      </Routes>
+
+      <Routes>
+        <Route path='/FiltroCurso' element={<FiltroCurso/>}/>
+      </Routes>
+
+      <Routes>
+        <Route path='/Recuperar' element={<Recuperar/>}/>
+      </Routes>
+
+      <Routes>
+        <Route path='/NuevoPassword' element={<NuevoPassword/>}/>
+      </Routes>
+
 
     </BrowserRouter>
   );

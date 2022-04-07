@@ -5,7 +5,7 @@ import Axios from 'axios'
 
 export function Cards() {
 
-  const [carnet, setCarnet] = useState(null)
+  const [curso, setCurso] = useState(null)
   const [datos, setDatos] = useState([])
 
 
@@ -13,10 +13,10 @@ export function Cards() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const data = {
-      nombre: carnet
+      curso
     }
     console.log(data)
-    Axios.post('/filtro', data)
+    Axios.post('/filtro2', data)
       .then(res => {
         setDatos(res.data)
         
@@ -28,12 +28,12 @@ export function Cards() {
     <div>
       <center>
         <br />
-        <Card style={{ width: '50rem' }}>
+        <Card style={{ width: '65rem', height: '50rem'}}>
 
           <Card.Body>
             <Form onSubmit={handleSubmit}>
-              <h1>Buscar Usuario</h1>
-              <Form.Control type="text" placeholder="Carnet Estudiante" onChange={e => setCarnet(e.target.value)} value={carnet} />
+              <h1>Buscar Publicación</h1>
+              <Form.Control type="text" placeholder="Código Curso" onChange={e => setCurso(e.target.value)} value={curso} />
               <br></br>
               <Button variant="primary" type="submit">
                 Buscar
@@ -45,10 +45,11 @@ export function Cards() {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Carnet</th>
-                  <th>Nombre</th>
-                  <th>Apellidos</th>
-                  <th>Correo</th>
+                    <th>Carnet Estudiante</th>
+                    <th>Comentario</th>
+                    <th>Catedrático</th>
+                    <th>Curso</th>
+                    <th>Fecha de Publicación</th>
                 </tr>
               </thead>
               <tbody>
@@ -58,10 +59,11 @@ export function Cards() {
                     return (
                       
                       <tr>
-                        <td>{cat.carnet}</td>
-                        <td>{cat.nombres}</td>
-                        <td>{cat.apellidos}</td>
-                        <td>{cat.correo}</td>
+                        <td>{cat.Usuario_carnet}</td>
+                        <td>{cat.comentario}</td>
+                        <td>{cat.catedratico_idCatedratico}</td>
+                        <td>{cat.curso_codigo}</td>
+                        <td>{cat.fecha}</td>
                       </tr>
 
                     )

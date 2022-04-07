@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 export function Cards() {
     const [carnet, setUsusario] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [correo, setCorreo] = useState(null)
     const redirect = useNavigate()
 
     const [open, setOpen] = React.useState(false);
@@ -17,22 +17,20 @@ export function Cards() {
         e.preventDefault() // permanecen los datos
         const data ={
             carnet,
-            password
+            correo
         }
      //   console.log(data)
-        Axios.post('/login',data)
+        Axios.post('/login2',data)
             .then(res =>{
               
                 ingreso = Object.keys(res.data).length===0;
                if(!ingreso){
                    localStorage.setItem("carnet",res.data.carnet)
-                   localStorage.setItem("nombres",res.data.nombres)
-                   localStorage.setItem("apellidos", res.data.apellidos)
-                    localStorage.setItem("correo", res.data.correo)
-                   redirect('/datos')
+                   
+                   redirect('/NuevoPassword')
                }
                else{
-                   redirect('/Crear')           
+                   redirect('/')           
                }
             })
     }
@@ -41,7 +39,7 @@ export function Cards() {
         <div>
             <br />
             <Card style={{width:"45rem"}}>
-                <Card.Header as="h3" >Login</Card.Header>
+                <Card.Header as="h3" >Recuperación de Contraseña</Card.Header>
                 <Card.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -49,22 +47,14 @@ export function Cards() {
                             <Form.Control type="text" placeholder="CARNET ESTUDIANTIL" onChange={e=> setUsusario(e.target.value)} value={carnet} />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Contraseña" onChange={e=> setPassword(e.target.value)} value = {password} />
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Correo electrónico</Form.Label>
+                            <Form.Control type="text" placeholder="Correo Electrónico" onChange={e=> setCorreo(e.target.value)} value = {correo} />
                         </Form.Group>
                         
                         <Button variant="primary" type="submit">
-                            Login
+                            Comprobar Información
                         </Button>{' '}
-                        
-                        <Button variant="secondary" type="submit" href='/Crear'>
-                            Crear Usuario
-                        </Button>{' '}
-
-                        <Button variant="info" type="submit" href ='/Recuperar'>
-                            Olvido su contraseña?
-                        </Button>
 
                     </Form>
                 </Card.Body>
